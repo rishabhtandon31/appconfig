@@ -1,5 +1,51 @@
+server:
+  port: 8088
 spring:
-  cloud:
-    config:
-      uri:
-      - http://localhost:8888
+  boot:
+    admin:
+      client:
+        url: http://localhost:8083
+  application:
+    name: producer-app
+  datasource:
+   url : jdbc:postgresql://localhost:1030/db_account
+   username : postgres
+   password : admin
+   driverClassName : org.postgresql.Driver
+  jpa:
+    generate-ddl: true
+    show-sql: true
+logging:
+  level:
+    org.cap.demo: DEBUG
+     
+eureka:
+  instance:
+    instance-id: 2
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 2
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    healthcheck:
+      enabled: true
+info:
+  application:
+    name: Investors and Stock App
+    version: 1.0
+    desc: This will show investors with stock invesments.    
+management:
+  server:
+    port: 8089
+  endpoints:
+    web:
+      exposure:
+        include:
+        - '*'
+  endpoint:
+    health:
+      show-details: always   
+      
+      
+      
+      
